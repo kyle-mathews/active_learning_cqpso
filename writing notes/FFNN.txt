@@ -1,0 +1,47 @@
+feedforward neural networks
+
+1) ANN as a computational model of a biological neuron 
+2) FFNN architecture and forward propogation 
+3) Training of the FFNN
+	-supervised training? 
+	-purpose of training 
+	-weight adjustments 
+	-error functions and the effect on training and the weight space(error surface) 
+	-local and global optimisation techniques 
+		-backpropogation and different backpropogation algorithms 
+4) Applications of FFNN (classification and regression)
+
+
+IMPORTANT THINGS THAT STILL NEED TO BE SAID 
+
+		-> drawbacks and limits of backpropagation such as 
+		   saturation, differentiable activation functions and loss functions and 
+		   vansishing gradient problem. As well as plateaus, local optimums 
+
+
+
+ \section{A General Active Learning Algorithm}
+This section provides a brief overview of a general active learning algorithm applied to the training of FFNNs. It is evident that dynamic pattern selection is part of the network training process. The training period termination criteria refers to a criteria that stipulates the end of training on the training subset whereby another subset should be chosen to train the FFNN. Global convergence refers to the belief that the FFNN is trained to satisfaction.    
+
+\begin{algorithm}
+ \caption{A General Active Learning Algorithm}
+ \begin{algorithmic}
+\State \textbf{Initialise}: FFNN architecture, Weight values
+\State \textbf{Construct}: An initial training subset $D_T$ from the candidate set $D_C$
+\Repeat
+\State Train the FFNN on $D_T$ until training period termination criteria is met 
+\State Apply active learning operator $\mathrm{A}(.)$ to $D_C$ to generate a new subset $D_S$
+\State \textbf{IF} Selective learning: $D_T \gets D_S$
+\State \textbf{IF} Incremental learning: $D_T \gets D_T\cup D_S, D_C \gets D_C - D_S$
+\Until Global convergence 
+ \end{algorithmic}
+ \end{algorithm}
+
+ A general overview of an active learning algorithm allows for the identification of design issues that must be taken into account when designing a more specific active learning algorithm. These design issues include:
+ \begin{itemize}
+ \item[-] the selection of an initial training subset from the candidate set,
+ \item[-] the size of the initial training subset,
+ \item[-] the design of an active learning operator,
+ \item[-] the size of the new selected subset $D_S$, and
+ \item[-] the training period termination criteria 
+ \end{itemize}
